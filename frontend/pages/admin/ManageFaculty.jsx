@@ -10,7 +10,7 @@ const ManageFaculty = () => {
     useEffect(() => {
         fetchFaculty();
     }, []);
-
+    // fetch faculty function=============================================
     const fetchFaculty = async () => {
     try {
         const res = await axios.get(
@@ -23,6 +23,19 @@ const ManageFaculty = () => {
         setMsg("Failed to load faculty list");
     }
     };
+
+    // delete faculty function===============================================
+    const deleteFaculty = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/admin/faculty/${id}`, {
+                withCredentials: true,
+            }); 
+            setFaculty((prev) => prev.filter((f) => f.id !== id));
+        } catch (error) {
+            console.error("Delete error:", error);
+            alert("Failed to delete faculty");
+        }
+        };
 
   return (
     <div>
@@ -82,7 +95,13 @@ const ManageFaculty = () => {
                         Edit
                     </button>
 
+                    {/* delete button */}
+
                     <button
+                    onClick={() => {
+                        const ok = window.confirm(`Are you sure you want to delete ${f.name}?`);
+                        if (ok) deleteFaculty(f.id);
+                    }}
                         type="button"
                         className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
                     >

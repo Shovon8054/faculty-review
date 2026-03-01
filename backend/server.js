@@ -9,6 +9,7 @@ import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
 import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
 import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
+import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
 
 
 // ========================middleware import==================
@@ -62,6 +63,7 @@ app.post("/api/login", loginHandler);
 // faculty section
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
+app.delete("/api/admin/faculty/:id", protect, authorize("admin"), deleteFaculty);
 // ================================================================================================
 
 
