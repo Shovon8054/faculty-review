@@ -7,9 +7,12 @@ import cookieParser from "cookie-parser";
 // =====================import handler=================
 import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
+// faculty
 import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
 import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
 import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
+import getFacultyById from "./handler/faculty/updateFaculty/getFacultyById.handler.js";
+import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler.js";
 
 
 // ========================middleware import==================
@@ -64,6 +67,8 @@ app.post("/api/login", loginHandler);
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
 app.delete("/api/admin/faculty/:id", protect, authorize("admin"), deleteFaculty);
+app.get("/api/admin/faculty/:id", protect, authorize("admin"), getFacultyById);
+app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 // ================================================================================================
 
 

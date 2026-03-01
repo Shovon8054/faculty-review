@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import AdminNavbar from "../../components/AdminNavbar"
 
 const ManageFaculty = () => {
+    const navigate = useNavigate();
+
     const [faculty, setFaculty] = useState([]);
     const [msg, setMsg] = useState("");
 
@@ -88,7 +91,9 @@ const ManageFaculty = () => {
 
                     {/* Buttons */}
                     <div className="mt-4 flex flex-col sm:flex-row gap-2">
+                    {/* edit button */}
                     <button
+                        onClick={() => navigate(`/admin/faculty/edit/${f.id}`)}
                         type="button"
                         className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-900 hover:bg-gray-50 transition"
                     >

@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import AddFaculty from '../pages/admin/AddFaculty';
 import ManageFaculty from '../pages/admin/ManageFaculty';
+import EditFaculty from '../pages/admin/EditFaculty';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin-dashboard" element={<AdminDashboard/>} />
         <Route path="/admin-add-faculty" element={<AddFaculty/>} />
         <Route path="/admin-manage-faculty" element={<ManageFaculty/>} />
+        <Route path="/admin/faculty/edit/:id" element={<EditFaculty/>} />
         
       </Routes>
     </div>
