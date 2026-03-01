@@ -68,9 +68,9 @@ const Sign = () => {
                     </button>
                     <p
                     className="text-sm text-center text-gray-600 cursor-pointer hover:underline"
-                    onClick={() => navigate("/signin")}
+                    onClick={() => navigate("/")}
                     >
-                        Already have an account? Sign in
+                        Already have an account? Login?
                     </p>
                     </div>
             </div>
