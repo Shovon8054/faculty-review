@@ -31,7 +31,7 @@ CREATE TABLE faculty (
   department VARCHAR(80) NULL,
   dp_url VARCHAR(255) NULL,
   graduated_institution VARCHAR(180) NULL,
-  courses TEXT NULL,          -- simplest: "CSE110, CSE220, CSE221"
+  courses TEXT NULL,          -- "CSE110, CSE220, CSE221"
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 

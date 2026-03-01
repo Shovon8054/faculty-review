@@ -7,8 +7,14 @@ import cookieParser from "cookie-parser";
 // =====================import handler=================
 import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
+import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
+import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
+
+
+// ========================middleware import==================
 import protect from "./middleware/protect.middleware.js";
 import adminOnly from "./middleware/admin.middleware.js";
+import authorize from "./middleware/authorize.middleware.js";
 
 
 // =========================================================
@@ -42,9 +48,20 @@ app.get("/api/admin/dashboard", protect, adminOnly, (req, res) => {
   res.json({ message: "welcome admin" });
 });
 
+
+// clear cookie for log out
+app.post("/api/logout", (req, res) => {
+  res.clearCookie("token"); 
+  res.json({ message: "Logged out" });
+})
+
 // =======================================API ENDPOINTS============================================
 app.post("/api/register", registerHandler)
 app.post("/api/login", loginHandler);
+
+// faculty section
+app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
+app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
 // ================================================================================================
 
 
