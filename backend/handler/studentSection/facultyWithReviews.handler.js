@@ -1,24 +1,25 @@
 import db from "../../db.js";
 const facultyWithReviews=async(req, res)=>{
     try{
-        const sqlQuery=`SELECT
+        const sqlQuery = `
+        SELECT
             f.id, f.name, f.courses,
-            COUNT (r.id) as total_reviews,
-            COALESCE (SUM(r.teaching),0) AS sum_teaching,
-            COALESCE (SUM(r.marking),0) AS sum_marking,
-            COALESCE (SUM(r.behaviour),0) AS sum_behavior
+            COUNT(r.id) AS total_reviews,
+            COALESCE(SUM(r.teaching), 0) AS sum_teaching,
+            COALESCE(SUM(r.marking), 0) AS sum_marking,
+            COALESCE(SUM(r.behaviour), 0) AS sum_behaviour  -- FIXED: changed sum_behavior to sum_behaviour
             
-            FROM faculty f
-            LEFT JOIN reviews r
+        FROM faculty f
+        LEFT JOIN reviews r
             ON r.faculty_id = f.id AND r.is_deleted = 0
-            
-            GROUP BY f.id, f.name, f.courses
-            ORDER BY f.name ASC`;
 
-        const[result]=await db.query(sqlQuery);
-        console.log(result)
-        return res.json(result)
-    
+        GROUP BY f.id, f.name, f.courses
+        ORDER BY f.name ASC
+        `;
+
+        const [result] = await db.query(sqlQuery);
+        return res.json(result);
+            
 
     } catch (error) {
         console.error(error);

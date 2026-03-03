@@ -25,7 +25,7 @@ export default function FacultyList() {
     fetchFaculties();
   }, []);
 
-//   filtered function for search
+
   const filtered=(faculties.filter((f)=>{
     const search=typed.trim().toLowerCase();
     if (!search) return true;
@@ -114,7 +114,7 @@ export default function FacultyList() {
                     {/* =============================button==================================================== */}
                 <button>
                     <Link
-                        to={`/student/rate-faculty/${f.id}`}
+                        to={`/student/add-rating/${f.id}`}
                         className="inline-flex items-center rounded-lg bg-gray-900 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-800 active:bg-gray-950"
                     >
                         Add Review

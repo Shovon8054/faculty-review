@@ -17,6 +17,7 @@ import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler
 // handler/studentSection
 
 import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
+import addRating from "./handler/studentSection/addRating.handler.js";
 
 
 // ========================middleware import==================
@@ -76,6 +77,7 @@ app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 
 // student section
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
+app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
 // ================================================================================================
 
 
