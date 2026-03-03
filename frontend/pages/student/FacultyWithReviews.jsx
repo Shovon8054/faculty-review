@@ -5,8 +5,9 @@ import StudentNavbar from "../../components/StudentNavbar";
 
 export default function FacultyList() {
   const [faculties, setFaculties] = useState([]);
+  const [typed, setTyped]=useState("")
   
-
+    // useEffect function
   useEffect(() => {
     const fetchFaculties = async () => {
       try {
@@ -24,6 +25,17 @@ export default function FacultyList() {
     fetchFaculties();
   }, []);
 
+//   filtered function for search
+  const filtered=(faculties.filter((f)=>{
+    const search=typed.trim().toLowerCase();
+    if (!search) return true;
+
+    const name=(f.name||"").toLowerCase();
+    const course=(f.courses||"").toLowerCase();
+
+    return name.includes(search)||course.includes(search)
+  }))
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -31,15 +43,23 @@ export default function FacultyList() {
 
     <div className="mx-auto w-full max-w-6xl px-4 py-6">
         {/* header */}
-        <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-lg font-semibold text-gray-900">Faculty Reviews</h2>
-        <p className="text-xs text-gray-600">
-            Click <span className="font-semibold">Add Review</span> to submit your review
-        </p>
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-lg font-semibold text-gray-900">Faculty Reviews</h2>
+
+            <input
+                value={typed}
+                onChange={(e) => setTyped(e.target.value)}
+                placeholder="Search faculty name or course..."
+                className="w-full rounded-lg border border-gray-600 bg-white px-3 py-2 text-sm outline-none focus:border-gray-400 sm:max-w-sm"
+            />
+
+            <p className="text-xs text-gray-600">
+                Click <span className="font-semibold">Add Review</span> to submit
+            </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {faculties.map((f) => {
+        {filtered.map((f) => {
             // ===== Calculations=====
             const total = f.total_reviews ?? 0;
 
