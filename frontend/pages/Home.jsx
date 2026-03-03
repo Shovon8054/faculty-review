@@ -1,8 +1,8 @@
-
+import StudentNavbar from "../components/StudentNavbar"
 const Home = () => {
   return (
     <div>
-      hello
+      <StudentNavbar/>
     </div>
   )
 }

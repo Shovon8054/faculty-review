@@ -6,6 +6,8 @@ import AdminDashboard from '../pages/admin/AdminDashboard';
 import AddFaculty from '../pages/admin/AddFaculty';
 import ManageFaculty from '../pages/admin/ManageFaculty';
 import EditFaculty from '../pages/admin/EditFaculty';
+import FacultyWithReviews from '../pages/student/FacultyWithReviews';
+
 
 const App = () => {
   return (
@@ -14,10 +16,13 @@ const App = () => {
         <Route path="/" element={<Login/>} />
         <Route path="/signin" element={<Sign/>} />
         <Route path="/home" element={<Home/>} />
+        {/* admin section */}
         <Route path="/admin-dashboard" element={<AdminDashboard/>} />
         <Route path="/admin-add-faculty" element={<AddFaculty/>} />
         <Route path="/admin-manage-faculty" element={<ManageFaculty/>} />
         <Route path="/admin/faculty/edit/:id" element={<EditFaculty/>} />
+        {/* student section */}
+        <Route path="/student/faculty-with-review" element={<FacultyWithReviews/>} />
         
       </Routes>
     </div>

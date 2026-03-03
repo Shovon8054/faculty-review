@@ -14,6 +14,10 @@ import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
 import getFacultyById from "./handler/faculty/updateFaculty/getFacultyById.handler.js";
 import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler.js";
 
+// handler/studentSection
+
+import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
+
 
 // ========================middleware import==================
 import protect from "./middleware/protect.middleware.js";
@@ -69,6 +73,9 @@ app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
 app.delete("/api/admin/faculty/:id", protect, authorize("admin"), deleteFaculty);
 app.get("/api/admin/faculty/:id", protect, authorize("admin"), getFacultyById);
 app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
+
+// student section
+app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 // ================================================================================================
 
 

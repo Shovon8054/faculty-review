@@ -15,12 +15,13 @@ const updateFaculty = async (req, res) => {
        WHERE id=?`,
       [name, department ?? null, graduated_institution ?? null, courses ?? null, id]
     );
+    console.log(result)
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "Faculty not found" });
     }
 
-    // return updated rows
+    // return updated row
     const [rows] = await db.query("SELECT * FROM faculty WHERE id = ?", [id]);
     return res.status(200).json(rows[0]);
   } catch (error) {
