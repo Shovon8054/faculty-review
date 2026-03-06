@@ -42,7 +42,7 @@ export default function StudentNavbar() {
 
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-2">
-            <Link to="#" className={linkClass("/admin-dashboard")}>
+            <Link to="/student/queries" className={linkClass("/admin-dashboard")}>
                 Queries
             </Link>
 

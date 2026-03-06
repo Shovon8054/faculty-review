@@ -2,13 +2,13 @@ import db from "../../db.js";
 
 const addRating = async (req, res) => {
   try {
-    const facultyId = req.params.id;  // Faculty ID from the URL parameter
-    const userId = req.user.id;  // Get the user ID from the logged-in user
+    const facultyId = req.params.id;  
+    const userId = req.user.id;  
 
-    // Get the ratings from the request body
+   
     const { teaching, marking, behaviour } = req.body;
 
-    // Insert or update the review in the database
+    
     await db.query(
       `
       INSERT INTO reviews (user_id, faculty_id, teaching, marking, behaviour)
@@ -19,10 +19,10 @@ const addRating = async (req, res) => {
         behaviour = VALUES(behaviour),
         updated_at = CURRENT_TIMESTAMP
       `,
-      [userId, facultyId, teaching, marking, behaviour] // Correct the order of parameters
+      [userId, facultyId, teaching, marking, behaviour] 
     );
 
-    // Send a success response
+    
     return res.json({ message: "Rating added/updated successfully" });
   } catch (err) {
     console.error("addRating error:", err);

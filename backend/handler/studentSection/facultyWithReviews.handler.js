@@ -7,7 +7,7 @@ const facultyWithReviews=async(req, res)=>{
             COUNT(r.id) AS total_reviews,
             COALESCE(SUM(r.teaching), 0) AS sum_teaching,
             COALESCE(SUM(r.marking), 0) AS sum_marking,
-            COALESCE(SUM(r.behaviour), 0) AS sum_behaviour  -- FIXED: changed sum_behavior to sum_behaviour
+            COALESCE(SUM(r.behaviour), 0) AS sum_behaviour  
             
         FROM faculty f
         LEFT JOIN reviews r

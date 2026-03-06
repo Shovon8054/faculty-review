@@ -8,7 +8,7 @@ import ManageFaculty from '../pages/admin/ManageFaculty';
 import EditFaculty from '../pages/admin/EditFaculty';
 import FacultyWithReviews from '../pages/student/FacultyWithReviews';
 import AddRating from '../pages/student/AddRating';
-
+import Queries from '../pages/student/Queries';
 
 const App = () => {
   return (
@@ -25,6 +25,7 @@ const App = () => {
         {/* student section */}
         <Route path="/student/faculty-with-review" element={<FacultyWithReviews/>} />
         <Route path="/student/add-rating/:id" element={<AddRating/>} />
+        <Route path="/student/queries" element={<Queries/>} />
         
       </Routes>
     </div>
