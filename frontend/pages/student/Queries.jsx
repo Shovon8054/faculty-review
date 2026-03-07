@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import StudentNavbar from "../../components/StudentNavbar";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Queries = () => {
+
+  const navigate=useNavigate();
+
+
   const [body, setBody] = useState("");
   const [msg, setMsg] = useState("");
   const [posts, setPosts] = useState([]);
@@ -151,13 +155,17 @@ const Queries = () => {
                     )}
 
                     <div className="flex items-center gap-2">
+
+                    {/* edit button */}
                       <button
+                      onClick={()=>{navigate(`/student/queries/edit/${post.id}`)}}
                         type="button"
                         className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
                       >
                         Edit
                       </button>
-
+                    
+                    {/* delete button */}
                       <button
                         onClick={()=>{handleDelete(post.id)}}
                         type="button"

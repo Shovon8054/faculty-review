@@ -9,6 +9,7 @@ import EditFaculty from '../pages/admin/EditFaculty';
 import FacultyWithReviews from '../pages/student/FacultyWithReviews';
 import AddRating from '../pages/student/AddRating';
 import Queries from '../pages/student/Queries';
+import EditQuery from '../components/EditQuery';
 
 const App = () => {
   return (
@@ -25,7 +26,11 @@ const App = () => {
         {/* student section */}
         <Route path="/student/faculty-with-review" element={<FacultyWithReviews/>} />
         <Route path="/student/add-rating/:id" element={<AddRating/>} />
+        {/* queries */}
         <Route path="/student/queries" element={<Queries/>} />
+        <Route path="/student/queries" element={<Queries/>} />
+        <Route path="/student/queries/edit/:id" element={<EditQuery/>} />
+
         
       </Routes>
     </div>
