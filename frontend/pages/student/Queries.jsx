@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import StudentNavbar from "../../components/StudentNavbar";
+import { Link } from "react-router-dom";
 
 const Queries = () => {
   const [body, setBody] = useState("");
   const [msg, setMsg] = useState("");
   const [posts, setPosts] = useState([]);
 
-  // Fetch all queries
+  // =========================Fetch all queries=============================
   const fetchQueries = async () => {
     try {
       const res = await axios.get("http://localhost:8080/api/student/queries", {
@@ -25,7 +26,7 @@ const Queries = () => {
     fetchQueries();
   }, []);
 
-  // Submit new query
+  // =====================================Submit new query===============================
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,6 +50,19 @@ const Queries = () => {
       setMsg("Failed to create query");
     }
   };
+
+  // ======================delete query===================================
+  const handleDelete=async(id)=>{
+    try{
+      await axios.delete(`http://localhost:8080/api/queries/${id}`,
+        {withCredentials:true}
+      )
+      setPosts((prev)=>prev.filter((p)=>p.id!==id));
+      alert("Deleted")
+    } catch(error){
+      console.error(error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -113,26 +127,47 @@ const Queries = () => {
                     className="group rounded-3xl border border-slate-200/80 bg-white/95 p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                 >
                     {/* header */}
-                    <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-sm font-semibold uppercase text-slate-700 shadow-sm">
-                        {post.name ? post.name.charAt(0) : "U"}
-                        </div>
-
-                        <div>
-                        <p className="text-[15px] font-semibold tracking-tight text-slate-900">
-                            {post.name || "Unknown User"}
-                        </p>
-                        <p className="mt-0.5 text-sm text-slate-500">{post.email}</p>
-                        </div>
+                <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                  {/* left */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-sm font-semibold uppercase text-slate-700 shadow-sm">
+                      {post.name ? post.name.charAt(0) : "U"}
                     </div>
 
+                    <div>
+                      <p className="text-[15px] font-semibold tracking-tight text-slate-900">
+                        {post.name || "Unknown User"}
+                      </p>
+                      <p className="mt-0.5 text-sm text-slate-500">{post.email}</p>
+                    </div>
+                  </div>
+
+                  {/* right */}
+                  <div className="flex flex-col items-end gap-2">
                     {post.created_at && (
-                        <div className="rounded-full bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500">
+                      <div className="rounded-full bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500">
                         {new Date(post.created_at).toLocaleString()}
-                        </div>
+                      </div>
                     )}
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        onClick={()=>{handleDelete(post.id)}}
+                        type="button"
+                        className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:text-red-700"
+                      >
+                        Delete
+                      </button>
                     </div>
+                  </div>
+                </div>
 
                     {/* body */}
                     <div className="pt-5">

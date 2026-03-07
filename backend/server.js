@@ -21,6 +21,9 @@ import addRating from "./handler/studentSection/addRating.handler.js";
 import queryHandler from "./handler/studentSection/queries.handler.js";
 import getQueries from "./handler/studentSection/getQueries.handler.js";
 
+// =========================
+import deleteQuery from "./handler/deleteQuery.handler.js";
+
 
 // ========================middleware import==================
 import protect from "./middleware/protect.middleware.js";
@@ -81,7 +84,9 @@ app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
 app.post("/api/student/queries", protect, authorize("student"), queryHandler)
-app.get("/api/student/queries", protect, authorize("student"), getQueries)
+// ==================================================================
+app.get("/api/student/queries", protect, getQueries)
+app.delete("/api/queries/:id", protect, deleteQuery)
 // ================================================================================================
 
 
