@@ -7,18 +7,19 @@ import cookieParser from "cookie-parser";
 // =====================import handler=================
 import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
-// faculty
+// faculty section
 import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
 import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
 import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
 import getFacultyById from "./handler/faculty/updateFaculty/getFacultyById.handler.js";
 import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler.js";
 
-// handler/studentSection
+// student section
 
 import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
 import addRating from "./handler/studentSection/addRating.handler.js";
 import queryHandler from "./handler/studentSection/queries.handler.js";
+import getQueries from "./handler/studentSection/getQueries.handler.js";
 
 
 // ========================middleware import==================
@@ -80,6 +81,7 @@ app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
 app.post("/api/student/queries", protect, authorize("student"), queryHandler)
+app.get("/api/student/queries", protect, authorize("student"), getQueries)
 // ================================================================================================
 
 
