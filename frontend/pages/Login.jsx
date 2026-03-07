@@ -21,7 +21,7 @@ const Login = () => {
             if (res.data.user.role==="admin"){
                 navigate("/admin-dashboard")
             }else{
-                navigate("/home")
+                navigate("/student/queries")
             }
 
         } catch(err){
