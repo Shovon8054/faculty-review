@@ -12,6 +12,7 @@ const Queries = () => {
   const [msg, setMsg] = useState("");
   const [posts, setPosts] = useState([]);
 
+  const currentUser=JSON.parse(localStorage.getItem("user"))
   // =========================Fetch all queries=============================
   const fetchQueries = async () => {
     try {
@@ -154,30 +155,32 @@ const Queries = () => {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-2">
+                    {post.isOwner && (
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            navigate(`/student/queries/edit/${post.id}`);
+                          }}
+                          type="button"
+                          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+                        >
+                          Edit
+                        </button>
 
-                    {/* edit button */}
-                      <button
-                      onClick={()=>{navigate(`/student/queries/edit/${post.id}`)}}
-                        type="button"
-                        className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
-                      >
-                        Edit
-                      </button>
-                    
-                    {/* delete button */}
-                      <button
-                        onClick={()=>{handleDelete(post.id)}}
-                        type="button"
-                        className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:text-red-700"
-                      >
-                        Delete
-                      </button>
-                    </div>
+                        <button
+                          onClick={() => {
+                            handleDelete(post.id);
+                          }}
+                          type="button"
+                          className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:text-red-700"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                    {/* body */}
                     <div className="pt-5">
 
                     <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-5">
