@@ -7,14 +7,16 @@ import cookieParser from "cookie-parser";
 // =====================import handler=================
 import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
-// faculty section
+// ===============================admin section===============================
 import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
 import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
 import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
 import getFacultyById from "./handler/faculty/updateFaculty/getFacultyById.handler.js";
 import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler.js";
+import getAllUsers from "./handler/handleUsers/getAllUsers.js";
+// ==============================================================================================
 
-// student section
+// ==============================student section=================================
 
 import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
 import addRating from "./handler/studentSection/addRating.handler.js";
@@ -24,6 +26,7 @@ import getQueries from "./handler/studentSection/getQueries.handler.js";
 // =========================
 import deleteQuery from "./handler/deleteQuery.handler.js";
 import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQueries.handler.js";
+// ==============================================================================================
 
 
 // ========================middleware import==================
@@ -74,14 +77,16 @@ app.post("/api/logout", (req, res) => {
 app.post("/api/register", registerHandler)
 app.post("/api/login", loginHandler);
 
-// faculty section
+// admin section////////////////////////////////////////////////////
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
 app.delete("/api/admin/faculty/:id", protect, authorize("admin"), deleteFaculty);
 app.get("/api/admin/faculty/:id", protect, authorize("admin"), getFacultyById);
 app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
+// get users
+app.get("/api/admin/users", protect, authorize("admin"), getAllUsers);
 
-// student section
+// student section/////////////////////////////////////////////////////
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
 

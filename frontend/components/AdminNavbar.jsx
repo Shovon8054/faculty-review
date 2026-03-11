@@ -50,7 +50,7 @@ export default function AdminNavbar() {
             Manage Faculty
           </Link>
 
-          <Link to="/admin" className={linkClass("/admin")}>
+          <Link to="/admin/users" className={linkClass("/admin")}>
             Manage Users
           </Link>
 
@@ -63,7 +63,7 @@ export default function AdminNavbar() {
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -71,7 +71,7 @@ export default function AdminNavbar() {
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          {/* Hamburger / X icon */}
+          
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             {open ? (
               <path

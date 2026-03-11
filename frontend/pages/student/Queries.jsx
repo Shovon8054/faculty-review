@@ -26,7 +26,7 @@ const Queries = () => {
     }
   };
 
-  // Load queries on page load
+  // Load queries
   useEffect(() => {
     fetchQueries();
   }, []);
