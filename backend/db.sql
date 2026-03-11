@@ -23,6 +23,33 @@ CREATE TABLE users (
 ) ENGINE=InnoDB;
 
 -- =========================
+-- COMMENTS
+-- =========================
+CREATE TABLE comments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  query_id INT NOT NULL,
+  user_id INT NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (query_id) REFERENCES queries(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- =========================
+-- Comment Likes
+-- =========================
+CREATE TABLE comment_likes (
+  comment_id INT,
+  user_id INT,
+
+  PRIMARY KEY (comment_id, user_id),
+
+  FOREIGN KEY (comment_id) REFERENCES comments(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- =========================
 -- FACULTY
 -- =========================
 CREATE TABLE faculty (
@@ -31,14 +58,12 @@ CREATE TABLE faculty (
   department VARCHAR(80) NULL,
   dp_url VARCHAR(255) NULL,
   graduated_institution VARCHAR(180) NULL,
-  courses TEXT NULL,          -- "CSE110, CSE220, CSE221"
+  courses TEXT NULL,          
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 -- =========================
--- REVIEWS (ratings + optional comment)
--- Prevent duplicate review: UNIQUE(user_id, faculty_id)
--- Admin can hide abusive review: is_deleted
+-- REVIEWS
 -- =========================
 CREATE TABLE reviews (
   id INT NOT NULL AUTO_INCREMENT,
@@ -68,9 +93,7 @@ CREATE TABLE reviews (
 ) ENGINE=InnoDB;
 
 -- =========================
--- QUERIES (Posts + Comments in one table)
--- parent_id = NULL => post
--- parent_id != NULL => comment
+-- QUERIES
 -- =========================
 CREATE TABLE queries (
   id INT NOT NULL AUTO_INCREMENT,
