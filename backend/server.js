@@ -7,16 +7,25 @@ import cookieParser from "cookie-parser";
 // =====================import handler=================
 import registerHandler from "./handler/register.handler.js";
 import loginHandler from "./handler/login.handler.js";
-// ===============================admin section===============================
+
+
+// ==============================================================
+// ADMIN SECTION
+// ==============================================================
 import addFacultyHandler from "./handler/faculty/addFaculty.handler.js";
 import fetchFaculty from "./handler/faculty/fetchFaculty.handler.js";
 import deleteFaculty from "./handler/faculty/deleteFaculty.handler.js";
 import getFacultyById from "./handler/faculty/updateFaculty/getFacultyById.handler.js";
 import updateFaculty from "./handler/faculty/updateFaculty/updateFaculty.handler.js";
 import getAllUsers from "./handler/handleUsers/getAllUsers.js";
+import blockUser from "./handler/handleUsers/blockUser.js";
 // ==============================================================================================
 
-// ==============================student section=================================
+
+
+// ==============================================================
+// STUDENT SECTION
+// ===============================================================
 
 import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
 import addRating from "./handler/studentSection/addRating.handler.js";
@@ -27,6 +36,9 @@ import getQueries from "./handler/studentSection/getQueries.handler.js";
 import deleteQuery from "./handler/deleteQuery.handler.js";
 import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQueries.handler.js";
 // ==============================================================================================
+
+
+
 
 
 // ========================middleware import==================
@@ -77,6 +89,11 @@ app.post("/api/logout", (req, res) => {
 app.post("/api/register", registerHandler)
 app.post("/api/login", loginHandler);
 
+
+
+
+
+
 // admin section////////////////////////////////////////////////////
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
@@ -85,8 +102,14 @@ app.get("/api/admin/faculty/:id", protect, authorize("admin"), getFacultyById);
 app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 // get users
 app.get("/api/admin/users", protect, authorize("admin"), getAllUsers);
+app.patch("/api/admin/users/:id", protect, authorize("admin"), blockUser);
 
-// student section/////////////////////////////////////////////////////
+
+
+
+
+
+// student section///////////////////////////
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
 
@@ -99,6 +122,10 @@ app.delete("/api/queries/:id", protect, deleteQuery)
 app.get("/api/student/queries/:id", protect, authorize("student"), getPostForEdit)
 app.put("/api/student/queries/:id", protect, authorize("student"), putPostForEdit)
 // ================================================================================================
+
+
+
+
 
 
 app.listen(process.env.PORT || 5000, () => {
