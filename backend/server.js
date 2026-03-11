@@ -41,7 +41,9 @@ import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQue
 
 
 
-// ========================middleware import==================
+// =========================================================
+// middleware import
+// =========================================================
 import protect from "./middleware/protect.middleware.js";
 import adminOnly from "./middleware/admin.middleware.js";
 import authorize from "./middleware/authorize.middleware.js";
@@ -60,11 +62,11 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ DB check on server start
+// DB check on server start
 (async () => {
   try {
     await db.query("SELECT 1");
-    console.log("✅ DB connected!");
+    console.log("DB connected!");
   } catch (err) {
     console.error("❌ DB connection failed:", err.message);
   }
