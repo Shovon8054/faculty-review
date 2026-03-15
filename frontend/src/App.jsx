@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/student/queries" element={<Queries/>} />
         <Route path="/student/queries" element={<Queries/>} />
         <Route path="/student/queries/edit/:id" element={<EditQuery/>} />
-        <Route path="/student/comment" element={<Comment/>} />
+        <Route path="/student/comment/:id" element={<Comment/>} />
 
         
       </Routes>

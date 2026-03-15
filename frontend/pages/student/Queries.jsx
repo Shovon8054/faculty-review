@@ -192,7 +192,7 @@ const Queries = () => {
                     {/* comment */}
                     <div class="mt-4">
                       <button
-                        onClick={()=>{navigate("/student/comment")}}
+                        onClick={()=>{navigate(`/student/comment/${post.id}`)}}
                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
                         Discussion
                       </button>

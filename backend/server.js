@@ -35,6 +35,9 @@ import getQueries from "./handler/studentSection/getQueries.handler.js";
 // =========================
 import deleteQuery from "./handler/deleteQuery.handler.js";
 import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQueries.handler.js";
+
+// comment
+import postComment from "./handler/comments/postComment.handler.js";
 // ==============================================================================================
 
 
@@ -94,8 +97,6 @@ app.post("/api/login", loginHandler);
 
 
 
-
-
 // admin section////////////////////////////////////////////////////
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
@@ -105,7 +106,6 @@ app.put("/api/admin/faculty/:id", protect, authorize("admin"), updateFaculty);
 // get users
 app.get("/api/admin/users", protect, authorize("admin"), getAllUsers);
 app.patch("/api/admin/users/:id", protect, authorize("admin"), blockUser);
-
 
 
 
@@ -123,8 +123,10 @@ app.delete("/api/queries/:id", protect, deleteQuery)
 // update
 app.get("/api/student/queries/:id", protect, authorize("student"), getPostForEdit)
 app.put("/api/student/queries/:id", protect, authorize("student"), putPostForEdit)
-// ================================================================================================
 
+// comment
+app.post("/api/comment", protect, authorize("student"), postComment);
+// ================================================================================================
 
 
 
