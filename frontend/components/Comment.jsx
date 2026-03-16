@@ -1,29 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Comment = () => {
-  const { id } = useParams(); // ✅ call useParams
+  const { id } = useParams(); 
   const navigate = useNavigate();
 
   const [body, setBody] = useState("");
+  const [comment, setComment]=useState([])
 
+  // useEffect
+  useEffect(()=>{
+    fetchComment();
+  },[id])
+
+  // fetch comment
+  const fetchComment=async()=>{
+    try{
+      const res=await axios.get(`http://localhost:8080/api/comment/${id}`,
+        {withCredentials:true}
+      );
+      setComment(res.data)
+
+    } catch(err){
+      console.error(err)
+    }
+  }
+
+    // post comment
   const postComment = async () => {
     try {
       await axios.post(
-        "http://localhost:8080/api/comment", // ✅ match backend
+        "http://localhost:8080/api/comment",
         { queryId: id, body: body },
         { withCredentials: true }
       );
 
       setBody("");
+      fetchComment();
     } catch (err) {
-      console.error(err.response?.status, err.response?.data);
+      console.error(err);
     }
   };
 
   return (
     <div className="p-2 max-w-md mx-auto space-y-4">
+
+      <div className="space-y-3">
+        {comment.map((c) => (
+          <div
+            key={c.id}
+            className="bg-white border rounded-lg p-3 shadow-sm"
+          >
+            {/* name */}
+            <p className="font-semibold text-gray-800">{c.name}</p>
+
+            {/* comment */}
+            <p className="text-gray-700 mt-1">{c.body}</p>
+
+            {/* time */}
+            <div className="flex items-center justify-between mt-2">
+              <p className="text-xs text-gray-400">
+                {new Date(c.created_at).toLocaleString()}
+              </p>
+
+              {/* like button */}
+              <button className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                Like
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+
+
+
       <div className="text-lg font-semibold">Comment Here</div>
 
       <div className="flex gap-2">
@@ -43,11 +95,7 @@ const Comment = () => {
       </div>
 
       <div className="flex gap-2">
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-        >
-          Like
-        </button>
+        
         <button
           onClick={() => navigate(-1)}
           className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition"

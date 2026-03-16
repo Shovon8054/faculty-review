@@ -38,6 +38,7 @@ import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQue
 
 // comment
 import postComment from "./handler/comments/postComment.handler.js";
+import getComment from "./handler/comments/getComments.handler.js";
 // ==============================================================================================
 
 
@@ -126,6 +127,7 @@ app.put("/api/student/queries/:id", protect, authorize("student"), putPostForEdi
 
 // comment
 app.post("/api/comment", protect, authorize("student"), postComment);
+app.get("/api/comment/:queryId", protect, authorize("student"), getComment);
 // ================================================================================================
 
 
