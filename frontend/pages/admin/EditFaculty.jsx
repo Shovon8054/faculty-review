@@ -70,70 +70,75 @@ const EditFaculty = () => {
     }
 
   return (
-    <div>
-      <AdminNavbar />
+      <div className="min-h-screen bg-gray-50">
+        <AdminNavbar />
 
-      <div className="p-4 sm:p-6 max-w-xl mx-auto">
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-semibold">Edit Faculty</h2>
-          <button
-            type="button"
-            onClick={() => navigate("/admin-manage-faculty")}
-            className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50"
-          >
-            Back
-          </button>
-        </div>
-
-        {msg && (
-          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            {msg}
+        <div className="max-w-md mx-auto mt-10 p-6">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900">Edit Faculty</h2>
+            <button
+              type="button"
+              onClick={() => navigate("/admin-manage-faculty")}
+              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200 shadow-sm"
+            >
+              Back
+            </button>
           </div>
-        )}
 
-        <form onSubmit={handleUpdate} className="bg-white border rounded-2xl p-4 space-y-3">
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2"
-            placeholder="Name"
-          />
+          {/* Message */}
+          {msg && (
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {msg}
+            </div>
+          )}
 
-          <input
-            name="department"
-            value={form.department}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2"
-            placeholder="Department"
-          />
-
-          <input
-            name="graduated_institution"
-            value={form.graduated_institution}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2"
-            placeholder="Graduated institution"
-          />
-
-          
-          <textarea
-            name="courses"
-            value={form.courses}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2 min-h-[100px]"
-            placeholder="Courses (comma separated)"
-          />
-
-          <button
-            type="submit"
-            className="w-full px-4 py-2 rounded-lg bg-black text-white hover:opacity-90"
+          {/* Form */}
+          <form
+            onSubmit={handleUpdate}
+            className="bg-white rounded-2xl p-6 shadow-md space-y-4"
           >
-            Update
-          </button>
-        </form>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 outline-none"
+              placeholder="Name"
+            />
+
+            <input
+              name="department"
+              value={form.department}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 outline-none"
+              placeholder="Department"
+            />
+
+            <input
+              name="graduated_institution"
+              value={form.graduated_institution}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 outline-none"
+              placeholder="Graduated Institution"
+            />
+
+            <textarea
+              name="courses"
+              value={form.courses}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 min-h-[100px] focus:ring-2 focus:ring-indigo-400 outline-none"
+              placeholder="Courses (comma separated)"
+            />
+
+            <button
+              type="submit"
+              className="w-full py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
+            >
+              Update
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
   )
 }
 

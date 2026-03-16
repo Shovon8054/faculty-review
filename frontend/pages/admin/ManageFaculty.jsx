@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar"
 
 const ManageFaculty = () => {
@@ -91,28 +91,27 @@ const ManageFaculty = () => {
 
                     {/* Buttons */}
                     <div className="mt-4 flex flex-col sm:flex-row gap-2">
-                    {/* edit button */}
-                    <button
-                        onClick={() => navigate(`/admin/faculty/edit/${f.id}`)}
-                        type="button"
-                        className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-900 hover:bg-gray-50 transition"
-                    >
-                        Edit
-                    </button>
+                        {/* Edit Button */}
+                        <button
+                            onClick={() => navigate(`/admin/faculty/edit/${f.id}`)}
+                            type="button"
+                            className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-900 bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm"
+                        >
+                            Edit
+                        </button>
 
-                    {/* delete button */}
-
-                    <button
-                    onClick={() => {
-                        const ok = window.confirm(`Are you sure you want to delete ${f.name}?`);
-                        if (ok) deleteFaculty(f.id);
-                    }}
-                        type="button"
-                        className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-                    >
-                        Delete
-                    </button>
-                    </div>
+                        {/* Delete Button */}
+                        <button
+                            onClick={() => {
+                            const ok = window.confirm(`Are you sure you want to delete ${f.name}?`);
+                            if (ok) deleteFaculty(f.id);
+                            }}
+                            type="button"
+                            className="w-full sm:w-auto flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200 shadow-sm"
+                        >
+                            Delete
+                        </button>
+                        </div>
                 </div>
                 ))}
             </div>
@@ -125,7 +124,7 @@ const ManageFaculty = () => {
             )}
             </div>
         </div>
-      
+    <Footer/>
     </div>
   )
 }

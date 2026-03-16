@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import StudentNavbar from "../../components/StudentNavbar";
+import Footer from "../../components/Footer";
 
 export default function FacultyList() {
   const [faculties, setFaculties] = useState([]);
@@ -50,7 +51,7 @@ export default function FacultyList() {
                 value={typed}
                 onChange={(e) => setTyped(e.target.value)}
                 placeholder="Search faculty name or course..."
-                className="w-full rounded-lg border border-gray-600 bg-white px-3 py-2 text-sm outline-none focus:border-gray-400 sm:max-w-sm"
+                className="w-full sm:max-w-sm rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
             />
 
             <p className="text-xs text-gray-600">
@@ -171,6 +172,7 @@ export default function FacultyList() {
         </div>
         )}
     </div>
+    <Footer/>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
+
 const Login = () => {
     const navigate=useNavigate();
 
@@ -30,53 +31,55 @@ const Login = () => {
     }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-        <form onSubmit={handleSubmit}>
-            <div className="w-full max-w-md bg-white rounded-2xl shadow p-6">
-            <h3 className="text-2xl font-semibold text-center mb-6">LOGIN</h3>
+    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] p-4">
+    <form onSubmit={handleSubmit} className="w-full max-w-md">
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+        <h3 className="text-2xl font-semibold text-center mb-6 text-[#2563EB]">
+            LOGIN
+        </h3>
 
-            <div className="space-y-4">
-                {/* email */}
-                <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-black"
-                />
+        <div className="space-y-4">
+            {/* Email */}
+            <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border border-[#1E293B] rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[#38BDF8] transition"
+            />
 
-                {/* password */}
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-black"
-                />
+            {/* Password */}
+            <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full border border-[#1E293B] rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[#38BDF8] transition"
+            />
 
-                {/* msg */}
-                {msg && <p className="text-sm text-center text-red-600">{msg}</p>}
+            {/* Message */}
+            {msg && <p className="text-sm text-center text-red-600">{msg}</p>}
 
-                {/* button */}
-                <button
-                type="submit"
-                className="w-full bg-black text-white rounded-lg py-2 font-medium hover:opacity-90 active:scale-[0.99]"
-                >
-                Login
-                </button>
-            </div>
+            {/* Button */}
+            <button
+            type="submit"
+            className="w-full bg-[#2563EB] text-white rounded-lg py-2 font-medium hover:bg-[#3B82F6] active:scale-[0.98] transition-transform duration-150"
+            >
+            Login
+            </button>
+        </div>
 
-            <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">Don&apos;t have an account?</p>
-                <Link
-                to="/signin"
-                className="inline-block mt-2 text-sm font-medium text-black underline underline-offset-4"
-                >
-                Sign In
-                </Link>
-            </div>
-            </div>
-        </form>
+        <div className="mt-6 text-center">
+            <p className="text-sm text-[#1E293B]">Don&apos;t have an account?</p>
+            <Link
+            to="/signin"
+            className="inline-block mt-2 text-sm font-medium text-[#38BDF8] underline underline-offset-4 hover:text-[#2563EB] transition-colors"
+            >
+            Sign In
+            </Link>
+        </div>
+        </div>
+    </form>
     </div>
   )
 }
