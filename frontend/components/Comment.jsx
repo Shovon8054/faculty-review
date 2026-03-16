@@ -8,11 +8,28 @@ const Comment = () => {
 
   const [body, setBody] = useState("");
   const [comment, setComment]=useState([])
+  const [user, setUser]=useState(null)
 
   // useEffect
   useEffect(()=>{
+    fetchUser();
     fetchComment();
   },[id])
+
+  // fetch user
+  const fetchUser=async()=>{
+    try{
+      const res=await axios.get(
+        "http://localhost:8080/api/me",
+        {withCredentials:true}
+      )
+      setUser(res.data)
+
+    } catch(err){
+      console.error(err)
+      
+    }
+  }
 
   // fetch comment
   const fetchComment=async()=>{
@@ -43,29 +60,56 @@ const Comment = () => {
     }
   };
 
-  return (
-    <div className="p-2 max-w-md mx-auto space-y-4">
+  // delete comment function
+  const deleteComment = async (id) => {
+    try {
 
+      await axios.delete(
+        `http://localhost:8080/api/comment/${id}`,
+        { withCredentials: true }
+      );
+
+      fetchComment();
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4 space-y-6">
+
+      {/* Comments */}
       <div className="space-y-3">
         {comment.map((c) => (
           <div
             key={c.id}
-            className="bg-white border rounded-lg p-3 shadow-sm"
+            className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition"
           >
-            {/* name */}
-            <p className="font-semibold text-gray-800">{c.name}</p>
+            {/* name and delete button */}
+            <div className="flex items-start justify-between">
+              <p className="font-semibold text-gray-800">{c.name}</p>
 
-            {/* comment */}
-            <p className="text-gray-700 mt-1">{c.body}</p>
+              {user?.id === c.user_id && (
+                <button
+                  onClick={() => deleteComment(c.id)}
+                  className="text-sm px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                >
+                  Delete
+                </button>
+              )}
+            </div>
 
-            {/* time */}
-            <div className="flex items-center justify-between mt-2">
+            {/* Comment body */}
+            <p className="text-gray-700 mt-2 leading-relaxed">{c.body}</p>
+
+
+            <div className="flex items-center justify-between mt-3">
               <p className="text-xs text-gray-400">
                 {new Date(c.created_at).toLocaleString()}
               </p>
 
-              {/* like button */}
-              <button className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">
+              <button className="text-sm px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
                 Like
               </button>
             </div>
@@ -73,36 +117,38 @@ const Comment = () => {
         ))}
       </div>
 
+      {/* Comment*/}
+      <div className="space-y-2">
+        <p className="text-lg font-semibold text-gray-800">Comment Here</p>
 
+        <div className="flex gap-2">
+          <textarea
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            rows="1"
+            placeholder="Write your comment..."
+          />
 
-
-      <div className="text-lg font-semibold">Comment Here</div>
-
-      <div className="flex gap-2">
-        <textarea
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          className="flex-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-          rows="1"
-          placeholder="Write your comment..."
-        />
-        <button
-          onClick={postComment}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-        >
-          Comment
-        </button>
+          <button
+            onClick={postComment}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+          >
+            Comment
+          </button>
+        </div>
       </div>
 
-      <div className="flex gap-2">
-        
+      {/* Back button */}
+      <div>
         <button
           onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition"
+          className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition"
         >
           Back
         </button>
       </div>
+
     </div>
   );
 };
