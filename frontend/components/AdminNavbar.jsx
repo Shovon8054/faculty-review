@@ -29,14 +29,17 @@ export default function AdminNavbar() {
     <nav className="bg-black text-white px-4 sm:px-6 py-4">
       <div className="flex justify-between items-center">
         {/* Left side */}
-        <Link to="/admin-dashboard" className="text-lg font-semibold">
-          Admin Dashboard
-        </Link>
+        <div className="min-w-0">
+                <div className="font-semibold leading-5 truncate">BRACU Faculty Portal</div>
+                <div className="text-xs text-white/60 leading-4 truncate">
+                    Reviews • Queries • Ratings
+                </div>
+          </div>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-2">
           <Link to="/admin-dashboard" className={linkClass("/admin-dashboard")}>
-            Dashboard
+            Posts
           </Link>
 
           <Link to="/admin-add-faculty" className={linkClass("/admin-add-faculty")}>
@@ -101,7 +104,7 @@ export default function AdminNavbar() {
               className={linkClass("/admin-dashboard")}
               onClick={() => setOpen(false)}
             >
-              Dashboard
+              Posts
             </Link>
 
             <Link

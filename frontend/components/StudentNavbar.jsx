@@ -43,7 +43,7 @@ export default function StudentNavbar() {
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-2">
             <Link to="/student/queries" className={linkClass("/admin-dashboard")}>
-                Queries
+                Posts
             </Link>
 
             <Link to="/student/faculty-with-review" className={linkClass("/admin-add-faculty")}>
@@ -100,36 +100,30 @@ export default function StudentNavbar() {
         {open && (
             <div className="md:hidden mt-4 border-t border-white/10 pt-3">
             <div className="flex flex-col gap-2">
+               
+
                 <Link
-                to="/admin-dashboard"
-                className={linkClass("/admin-dashboard")}
+                to="/student/queries"
+                className={linkClass("/student/queries")}
                 onClick={() => setOpen(false)}
                 >
-                Dashboard
+                Post
                 </Link>
 
                 <Link
-                to="/admin-add-faculty"
-                className={linkClass("/admin-add-faculty")}
+                to="/student/faculty-with-review"
+                className={linkClass("/student/faculty-with-review")}
                 onClick={() => setOpen(false)}
                 >
-                Add Faculty
+                Faculty
                 </Link>
 
                 <Link
-                to="/admin-manage-faculty"
-                className={linkClass("/admin-manage-faculty")}
+                to="/student/profile"
+                className={linkClass("/student/profile")}
                 onClick={() => setOpen(false)}
                 >
-                Manage Faculty
-                </Link>
-
-                <Link
-                to="/admin"
-                className={linkClass("/admin")}
-                onClick={() => setOpen(false)}
-                >
-                Manage Users
+                Profile
                 </Link>
 
                 <button
