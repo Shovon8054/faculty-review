@@ -12,6 +12,7 @@ import Queries from '../pages/student/Queries';
 import EditQuery from '../components/EditQuery';
 import ManageUsers from '../pages/admin/ManageUsers';
 import Comment from '../components/Comment';
+import Profile from '../pages/student/Profile';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         {/* student section */}
         <Route path="/student/faculty-with-review" element={<FacultyWithReviews/>} />
         <Route path="/student/add-rating/:id" element={<AddRating/>} />
+        <Route path="/student/profile" element={<Profile/>} />
         {/* queries */}
         <Route path="/student/queries" element={<Queries/>} />
         <Route path="/student/queries" element={<Queries/>} />

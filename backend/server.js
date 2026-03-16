@@ -29,10 +29,10 @@ import blockUser from "./handler/handleUsers/blockUser.js";
 
 import facultyWithReviews from "./handler/studentSection/facultyWithReviews.handler.js";
 import addRating from "./handler/studentSection/addRating.handler.js";
+import getProfile from "./handler/studentSection/profile.js";
+// query
 import queryHandler from "./handler/studentSection/queries.handler.js";
 import getQueries from "./handler/studentSection/getQueries.handler.js";
-
-// =========================
 import deleteQuery from "./handler/deleteQuery.handler.js";
 import { getPostForEdit, putPostForEdit } from "./handler/studentSection/editQueries.handler.js";
 
@@ -103,7 +103,7 @@ app.post("/api/login", loginHandler);
 
 
 
-// admin section////////////////////////////////////////////////////
+// /////////////////////////////////admin section/////////////////////////////////////////
 app.post("/api/admin/faculty", protect, authorize("admin"), addFacultyHandler);
 app.get("/api/admin/faculty", protect, authorize("admin"), fetchFaculty);
 app.delete("/api/admin/faculty/:id", protect, authorize("admin"), deleteFaculty);
@@ -117,10 +117,10 @@ app.patch("/api/admin/users/:id", protect, authorize("admin"), blockUser);
 
 
 
-// student section///////////////////////////
+// ////////////////////////////////student section///////////////////////////
 app.get("/api/student/faculty-with-review", protect, authorize("student"), facultyWithReviews)
 app.post("/api/student/add-rating/:id", protect, authorize("student"), addRating)
-
+app.get("/api/student/profile", protect, authorize("student"), getProfile)   //get profile api endpoint
 // ---------------------queries-----------------
 app.post("/api/student/queries", protect, authorize("student"), queryHandler)
 

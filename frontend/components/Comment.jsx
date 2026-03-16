@@ -79,7 +79,7 @@ const Comment = () => {
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">
 
-      {/* Comments */}
+      
       <div className="space-y-3">
         {comment.map((c) => (
           <div

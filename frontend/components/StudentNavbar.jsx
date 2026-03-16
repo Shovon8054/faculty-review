@@ -51,7 +51,7 @@ export default function StudentNavbar() {
             </Link>
 
             <Link
-                to="#"
+                to="/student/profile"
                 className={linkClass("/admin-manage-faculty")}
             >
                 Profile
