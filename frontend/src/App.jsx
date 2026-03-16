@@ -1,7 +1,6 @@
 import { Routes, Route, Link, NavLink } from 'react-router-dom';
 import Login from '../pages/Login';
 import Sign from '../pages/Sign';
-import Home from '../pages/Home';
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import AddFaculty from '../pages/admin/AddFaculty';
 import ManageFaculty from '../pages/admin/ManageFaculty';
@@ -20,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/signin" element={<Sign/>} />
-        <Route path="/home" element={<Home/>} />
+        
         {/* admin section */}
         <Route path="/admin-dashboard" element={<AdminDashboard/>} />
         <Route path="/admin-add-faculty" element={<AddFaculty/>} />
