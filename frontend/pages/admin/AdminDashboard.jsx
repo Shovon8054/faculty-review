@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminNavbar from "../../components/AdminNavbar";
 import axios from "axios";
-import Footer from "../../components/Footer";
+// import Footer from "../../components/Footer";
 
 const AdminDashboard = () => {
 
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
           </div>
         )}
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

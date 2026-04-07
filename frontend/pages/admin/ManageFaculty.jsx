@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from "../../components/Footer";
+// import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar"
 
 const ManageFaculty = () => {
@@ -124,7 +124,7 @@ const ManageFaculty = () => {
             )}
             </div>
         </div>
-    <Footer/>
+    {/* <Footer/> */}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminNavbar from "../../components/AdminNavbar"
-import Footer from "../../components/Footer";
+// import Footer from "../../components/Footer";
 
 const ManageUsers = () => {
     const [users, setUsers]=useState([]);
@@ -73,7 +73,7 @@ const ManageUsers = () => {
         ))}
         </div>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
     </div>
   )
 }
