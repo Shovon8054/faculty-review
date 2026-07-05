@@ -39,7 +39,7 @@ export default function FacultyList() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-50">
     <StudentNavbar />
 
     <div className="mx-auto w-full max-w-6xl px-4 py-6">
