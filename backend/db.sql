@@ -23,21 +23,6 @@ CREATE TABLE users (
 ) ENGINE=InnoDB;
 
 -- =========================
--- COMMENTS
--- =========================
-CREATE TABLE comments (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  query_id INT NOT NULL,
-  user_id INT NOT NULL,
-  body TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-  FOREIGN KEY (query_id) REFERENCES queries(id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
-
--- =========================
 -- FACULTY
 -- =========================
 CREATE TABLE faculty (
@@ -99,6 +84,20 @@ CREATE TABLE queries (
     FOREIGN KEY (parent_id) REFERENCES queries(id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+-- =========================
+-- COMMENTS
+-- =========================
+CREATE TABLE comments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  query_id INT NOT NULL,
+  user_id INT NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (query_id) REFERENCES queries(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
 
 -- =========================
 -- email: admin@bracu.ac.bd   pass : Admin1234
