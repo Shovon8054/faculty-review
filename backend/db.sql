@@ -8,6 +8,8 @@ CREATE DATABASE bracu_faculty_review
 
 USE bracu_faculty_review;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS queries;
 DROP TABLE IF EXISTS reviews;
@@ -110,3 +112,5 @@ CREATE TABLE comments (
 -- =========================
 INSERT INTO users (name, email, password_hash, role)
 VALUES ('Super Admin', 'admin@bracu.ac.bd', '$2b$10$9h0xGeve1xZYRovLfgKfJ.a5yTktz0B1tMUcz8B1qagF2y/ZKuGTe', 'admin');
+
+SET FOREIGN_KEY_CHECKS = 1;
