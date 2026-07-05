@@ -5,6 +5,9 @@ import App from "./App.jsx";
 import "./index.css";
 import axios from "axios";
 
+// Always send cookies with cross-origin requests (needed for Vercel → Render)
+axios.defaults.withCredentials = true;
+
 // Intercept Outgoing Axios Requests to Replace Localhost with Production API URL
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 if (apiBaseUrl) {
@@ -12,6 +15,7 @@ if (apiBaseUrl) {
     if (config.url && config.url.startsWith("http://localhost:8080")) {
       config.url = config.url.replace("http://localhost:8080", apiBaseUrl);
     }
+    config.withCredentials = true;
     return config;
   });
 }
