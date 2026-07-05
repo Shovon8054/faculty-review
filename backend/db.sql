@@ -8,6 +8,12 @@ CREATE DATABASE bracu_faculty_review
 
 USE bracu_faculty_review;
 
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS queries;
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS faculty;
+DROP TABLE IF EXISTS users;
+
 -- =========================
 -- USERS (students + admin)
 -- =========================
