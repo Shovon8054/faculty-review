@@ -6,14 +6,14 @@ import Footer from "../../components/Footer";
 
 const Queries = () => {
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
 
   const [body, setBody] = useState("");
   const [msg, setMsg] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const currentUser=JSON.parse(localStorage.getItem("user"))
+  const currentUser = JSON.parse(localStorage.getItem("user"))
   // =========================Fetch all queries=============================
   const fetchQueries = async () => {
     try {
@@ -58,23 +58,27 @@ const Queries = () => {
   };
 
   // ======================delete query===================================
-  const handleDelete=async(id)=>{
-    try{
+  const handleDelete = async (id) => {
+    try {
       await axios.delete(`http://localhost:8080/api/queries/${id}`,
-        {withCredentials:true}
+        { withCredentials: true }
       )
-      setPosts((prev)=>prev.filter((p)=>p.id!==id));
+      setPosts((prev) => prev.filter((p) => p.id !== id));
       alert("Deleted")
-    } catch(error){
+    } catch (error) {
       console.error(error)
     }
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
-      <StudentNavbar />
+      {/* Sticky Navbar */}
+      <div className="sticky top-0 z-50">
+        <StudentNavbar />
+      </div>
 
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
+      {/* Main Content with proper spacing for sticky navbar */}
+      <div className="flex-1 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 w-full">
         {/* post form */}
         <div className="mb-8 rounded-2xl border border-slate-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm transition-all hover:shadow-md">
           <div className="mb-4">
@@ -214,7 +218,6 @@ const Queries = () => {
                       </svg>
                       Join Discussion
                     </button>
-                    
                   </div>
                 </div>
               </div>
@@ -234,7 +237,8 @@ const Queries = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };
