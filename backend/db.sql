@@ -103,4 +103,4 @@ CREATE TABLE comments (
 -- email: admin@bracu.ac.bd   pass : Admin1234
 -- =========================
 INSERT INTO users (name, email, password_hash, role)
-VALUES ('Super Admin', 'admin@bracu.ac.bd', '$2b$10$REPLACE_WITH_BCRYPT_HASH', 'admin');
+VALUES ('Super Admin', 'admin@bracu.ac.bd', '$2b$10$9h0xGeve1xZYRovLfgKfJ.a5yTktz0B1tMUcz8B1qagF2y/ZKuGTe', 'admin');
