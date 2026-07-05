@@ -10,11 +10,20 @@ USE bracu_faculty_review;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- Drop tables from this project
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS queries;
 DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS faculty;
 DROP TABLE IF EXISTS users;
+
+-- Drop any stale tables from other projects in shared defaultdb
+DROP TABLE IF EXISTS admin_actions;
+DROP TABLE IF EXISTS student_profiles;
+DROP TABLE IF EXISTS enrollments;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS admins;
 
 -- =========================
 -- USERS (students + admin)
