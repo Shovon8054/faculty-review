@@ -30,8 +30,11 @@ async function run() {
   // Read SQL file content
   const sql = fs.readFileSync("./db.sql", "utf8");
 
-  // Remove database drop/creation instructions so it runs directly inside Aiven's 'defaultdb'
-  const cleanedSql = sql.replace(/DROP DATABASE[\s\S]*?USE bracu_faculty_review;/i, "");
+  // Strip the entire header block including DROP DATABASE, CREATE DATABASE, and USE statements
+  // This ensures all table creation happens inside Aiven's 'defaultdb' database
+  let cleanedSql = sql
+    .replace(/DROP DATABASE[\s\S]*?USE\s+\S+\s*;/i, "")  // remove DROP DB, CREATE DB, USE DB
+    .replace(/USE\s+\S+\s*;/gi, "");                      // remove any remaining USE statements
 
   console.log("Executing table creation and seed scripts...");
   await connection.query(cleanedSql);
